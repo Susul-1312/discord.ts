@@ -1,0 +1,42 @@
+import { snowflake, timestamp, bitfield } from './common-types';
+import User from './user';
+import Attachment from './attachment';
+import Embed from './embed';
+import ChannelMention from './channelmention';
+import Reaction from './reaction';
+import MessageActivity from './messageactivity';
+import Application from './application';
+import MessageInteraction from './messageinteraction';
+import Channel from './channel';
+import MessageComponent from './messagecomponent';
+import MessageStickerItem from './messagestickeritem';
+
+export default interface Message {
+    id: snowflake;
+    channel_id: snowflake;
+    author: User;
+    content: string;
+    timestamp: timestamp;
+    edited_timestamp: timestamp | null;
+    tts: boolean;
+    mention_everyone: boolean;
+    mentions: User[];
+    mention_roles: snowflake[];
+    mention_channels?: ChannelMention[];
+    attachments: Attachment[];
+    embeds: Embed[];
+    reactions?: Reaction[];
+    nonce?: string | number;
+    pinned: boolean;
+    webhook_id?: snowflake;
+    type: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24;
+    activity?: MessageActivity;
+    application?: Application;
+    flags?: bitfield;
+    referenced_message_id?: Message;
+    interaction?: MessageInteraction;
+    thread?: Channel;
+    components?: MessageComponent[];
+    sticker_items?: MessageStickerItem[];
+    position?: number;
+}
